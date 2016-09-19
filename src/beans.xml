@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 接口和实现类配置文件 -->
+<beans>
+
+	<!-- Dao  -->
+	<bean name="org.cc.bank.dao.BusinessDao" class="org.cc.bank.dao.impl.BasinessDaoImpl4Mysql" />
+	<bean name="org.cc.bank.dao.CustomerDao" class="org.cc.bank.dao.impl.CustomerDaoImpl4Mysql" />
+	<bean name="org.cc.bank.dao.AdminDao" class="org.cc.bank.dao.impl.AdminDaoImpl4Mysql" />
+	
+	<!-- Service -->
+	<bean name="org.cc.bank.service.AdminService" class="org.cc.bank.service.impl.AdminServiceImpl" />
+	<bean name="org.cc.bank.service.CustomerService" class="org.cc.bank.service.impl.CustomerServiceImpl" />
+	
+</beans>
