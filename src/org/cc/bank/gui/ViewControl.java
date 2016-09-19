@@ -63,9 +63,9 @@ public class ViewControl {
 		//读用户名
 		String username="";
 		while(true){
-			username=ReaderUtils.readString(4,"请输入用户名：","请仔细检查并重新输入用户名：");
-			if(!username.matches("[a-zA-Z]{1}[0-9a-zA-Z]{3,19}")){
-				System.out.println("用户名为4~20位数字或字母，并且不能为数字打头。");
+			username=ReaderUtils.readString(2,"请输入用户名：","请仔细检查并重新输入用户名：");
+			if(!username.matches("[\u4E00-\u9FA5a-zA-Z0-9]{2,20}")){
+				log("用户名为2~20位常用汉字和数字字母组合");
 			}else{
 				break;
 			}
@@ -76,7 +76,7 @@ public class ViewControl {
 		while(true){
 			passwd=ReaderUtils.readString(6,"请输入密码：","密码为6位数字：");
 			if(!passwd.matches("[0-9]{6}")){
-				System.out.println("密码必须为6位数字(ATM机).");
+				log("密码必须为6位数字(ATM机).");
 			}else{
 				break;
 			}
@@ -90,7 +90,7 @@ public class ViewControl {
 				lastAdmin=admin;
 				return true;
 			} else{
-				System.out.println("登录管理员账号失败，用户名不存在或密码错误");
+				log("登录管理员账号失败，用户名不存在或密码错误");
 				return false;
 			}
 		}else if(role==LoginRole.CUSTOMER){
@@ -100,7 +100,7 @@ public class ViewControl {
 				lastCustomer=c;
 				return true;
 			}else{
-				System.out.println("登录账号失败，用户名不存在或密码错误");
+				log("登录账号失败，用户名不存在或密码错误");
 				return false;
 			}
 		}
@@ -269,7 +269,7 @@ public class ViewControl {
 			while(true){
 				oldPasswd=ReaderUtils.readString(6,"请输入旧密码：","请仔细检查并重新输入旧密码：");
 				if(!oldPasswd.matches("[0-9]{6}")){
-					System.out.println("密码必须为6位数字(ATM机).");
+					log("密码必须为6位数字(ATM机).");
 				}else if(!oldPasswd.equals(lastCustomer.getPasswd())){
 					log("旧密码错误，请重新输入.");
 				}else{
@@ -282,7 +282,7 @@ public class ViewControl {
 			while(true){
 				newPasswd=ReaderUtils.readString(6,"请输入新密码：","请仔细检查并重新输入新密码：");
 				if(!newPasswd.matches("[0-9]{6}")){
-					System.out.println("密码必须为6位数字(ATM机).");
+					log("密码必须为6位数字(ATM机).");
 				}else if(oldPasswd.equals(newPasswd)){
 					log("新旧密码不能相同");
 				}else{
@@ -350,7 +350,6 @@ public class ViewControl {
 //				e.printStackTrace();
 				log("由于宇宙中熵的规律太过飘逸，所以导致了本次转账失败(严肃脸).");
 			} catch (MoneyOverFlowException e) {
-				// TODO Auto-generated catch block
 //				e.printStackTrace();
 				log("抱歉，对方的卡盛不了那么多钱.");
 			}
@@ -458,9 +457,9 @@ public class ViewControl {
 			//读入姓名
 			String name="";
 			while(true){
-				name=ReaderUtils.readString(4,"请输入顾客姓名：","请输入顾客姓名：");
-				if(!name.matches("[a-zA-Z]{1}[0-9a-zA-Z]{3,19}")){
-					log("用户名为4~20位数字或字母，并且不能为数字打头。");
+				name=ReaderUtils.readString(2,"请输入顾客姓名：","请输入顾客姓名：");
+				if(!name.matches("[\u4E00-\u9FA5a-zA-Z0-9]{2,20}")){
+					log("用户名为2~20位常用汉字和数字字母组合");
 				}else if(customerService.loadByName(name)!=null){
 					log("用户名已被占用，并且每个用户只能绑定一个银行卡，请核准后再操作。");
 				}else{
@@ -474,7 +473,7 @@ public class ViewControl {
 				idCard=ReaderUtils.readString(0,"请输入顾客身份证：","请输入顾客身份证：");
 				if(!IdCardUtils.validate(idCard)){
 					log("身份证号不合法!(身份证号有其独有的验证方法，so，造假请专业。)");
-				}else {
+				}else{
 					break;
 				}
 			}
@@ -497,8 +496,8 @@ public class ViewControl {
 			while(true){
 				passwd=ReaderUtils.readString(0,"请输入初始密码(6位数字)：","初始密码应为6位数字：");
 				if(!passwd.matches("[0-9]{6}")){
-//					System.out.println("密码为数字或字母，并且长度至少为6位，最长为40位（如果你记得住的话...）。");
-					System.out.println("初始密码应为6位数字，请确认并重新输入。");
+//					log("密码为数字或字母，并且长度至少为6位，最长为40位（如果你记得住的话...）。");
+					log("初始密码应为6位数字，请确认并重新输入。");
 				}else{
 					break;
 				}

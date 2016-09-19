@@ -46,7 +46,7 @@ public class ReaderUtils {
 			if(s.length()==0) continue;
 			if(s.length()>=leastLength) return s;
 			else {
-				log("长度不能少于"+leastLength);
+				log("请至少输入"+leastLength+"位.");
 			}
 		}
 	}
